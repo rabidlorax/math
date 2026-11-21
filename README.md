@@ -33,6 +33,14 @@ Machine-checked mathematical infrastructure in Lean 4 on top of Mathlib.
 - `DedekindSum-proofs.md`: the same in ordinary language.
 - `MathInfraTest/DedekindSum.lean`, `MathInfraTest/DedekindSumAxioms.lean`: checks and axiom
   audit for Dedekind sums.
+- `MathInfra/GaussSeq.lean`: the Gauss congruences `n ∣ Σ_{d ∣ n} μ(d)·f(n/d)`: two
+  characterisations (divisor sums of `d·h(d)`, and congruences modulo prime powers), the
+  subring of sequences satisfying them, Burnside's formula, the two basic examples `aⁿ`
+  (Fermat's little theorem for every modulus) and fixed-point counts of a self-map of a finite
+  set, and necklace numbers. Not in Mathlib.
+- `GaussSeq-proofs.md`: the same in ordinary language.
+- `MathInfraTest/GaussSeq.lean`, `MathInfraTest/GaussSeqAxioms.lean`: checks and axiom audit
+  for Gauss congruences.
 - `.elan/`: the Lean toolchain, kept on this drive (not on PATH, nothing on C:).
 
 ## Running
@@ -82,3 +90,13 @@ From Dedekind sums:
 - Rademacher's three-term reciprocity, and Dedekind–Rademacher sums with shifts.
 - Rademacher's exact formula for the partition function, whose Kloosterman-type sums have
   phases `e^(πi·s(h, k))`.
+
+From Gauss congruences:
+
+- Gauss's count `M(q, n)` of the monic irreducible polynomials of degree `n` over `𝔽_q`, from
+  the fixed points of the Frobenius map on `𝔽_(qⁿ)`.
+- Lyndon words, counted by `M(a, n)`, and the Chen–Fox–Lyndon factorisation.
+- Traces `tr(Aⁿ)` of the powers of an integer matrix, hence Lucas `V_n(P, Q)`, satisfy the
+  Gauss congruences. In general, `f` satisfies them if and only if `exp(Σ f(n)·tⁿ/n)` has
+  integer coefficients (for fixed-point counts, the Artin–Mazur zeta function).
+- The big Witt vectors and the necklace ring, whose ghost components are these sequences.

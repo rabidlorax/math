@@ -4,5 +4,7 @@ import MathInfraTest.LucasSeq
 import MathInfraTest.LucasSeqAxioms
 import MathInfraTest.RamanujanSum
 import MathInfraTest.RamanujanSumAxioms
+import MathInfraTest.GaussSeq
+import MathInfraTest.GaussSeqAxioms
 import MathInfraTest.DedekindSum
 import MathInfraTest.DedekindSumAxioms
