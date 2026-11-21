@@ -1,7 +1,7 @@
-import MathInfra.QAnalog
+import MathInfra.FormalizedElsewhere.QAnalog
 
 /-!
-# Axiom audit for `MathInfra.QAnalog`
+# Axiom audit for `MathInfra.FormalizedElsewhere.QAnalog`
 
 Every public theorem, with the axioms it depends on. `#guard_msgs` turns each line into a
 check, so the build fails if any theorem starts depending on anything else (for example

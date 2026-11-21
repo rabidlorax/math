@@ -4,44 +4,56 @@ Machine-checked mathematical infrastructure in Lean 4 on top of Mathlib.
 
 ## Layout
 
-- `MathInfra/QAnalog.lean`: q-numbers, q-factorials, Gaussian binomial coefficients, the
-  q-binomial theorem and universality. Mathlib lists q-factorials and q-binomials as a TODO;
-  this is the first layer.
-- `QAnalog-proofs.md`: the same results and proofs in ordinary language, each tagged with
-  the Lean theorem that checks it.
-- `MathInfraTest/QAnalog.lean`: known values, the q-Pascal triangle, the theorems in use.
-- `MathInfraTest/Axioms.lean`: every public theorem with the axioms it depends on, as a
-  check that fails the build if that ever changes.
-- `MathInfra/LucasSeq.lean`: Lucas sequences `U_n(P, Q)`, `V_n(P, Q)` over any commutative
-  ring: addition, doubling and composition formulas, Binet formulas, strong divisibility,
-  and the behaviour modulo a prime (law of apparition). Mathlib has only special cases
-  (Fibonacci, Chebyshev, Dickson); this file proves they are special cases.
-- `LucasSeq-proofs.md`: the same in ordinary language.
-- `MathInfraTest/LucasSeq.lean`, `MathInfraTest/LucasSeqAxioms.lean`: checks and axiom audit
-  for Lucas sequences.
-- `MathInfra/RamanujanSum.lean`: Ramanujan sums `c_q(n)`: the divisor-sum characterisation,
-  values, periodicity, multiplicativity in `q`, Hölder's formula, and `c_q(n)` as a sum of
-  powers of the primitive `q`-th roots of unity in any integral domain that has one. Not in
-  Mathlib.
-- `RamanujanSum-proofs.md`: the same in ordinary language.
-- `MathInfraTest/RamanujanSum.lean`, `MathInfraTest/RamanujanSumAxioms.lean`: checks and axiom
-  audit for Ramanujan sums.
-- `MathInfra/DedekindSum.lean`: the sawtooth function `((x))` and its distribution relation;
-  Dedekind sums `s(h, k)`: symmetries, homogeneity, an integer formula, the bound
-  `|s(h, k)| ≤ s(1, k)`, the reciprocity law, and the integrality of `6k·s(h, k)` with the
-  congruence `12hk·s(h, k) ≡ h² + 1 (mod k)`. Not in Mathlib.
-- `DedekindSum-proofs.md`: the same in ordinary language.
-- `MathInfraTest/DedekindSum.lean`, `MathInfraTest/DedekindSumAxioms.lean`: checks and axiom
-  audit for Dedekind sums.
-- `MathInfra/GaussSeq.lean`: the Gauss congruences `n ∣ Σ_{d ∣ n} μ(d)·f(n/d)`: two
-  characterisations (divisor sums of `d·h(d)`, and congruences modulo prime powers), the
-  subring of sequences satisfying them, Burnside's formula, the two basic examples `aⁿ`
-  (Fermat's little theorem for every modulus) and fixed-point counts of a self-map of a finite
-  set, and necklace numbers. Not in Mathlib.
-- `GaussSeq-proofs.md`: the same in ordinary language.
-- `MathInfraTest/GaussSeq.lean`, `MathInfraTest/GaussSeqAxioms.lean`: checks and axiom audit
-  for Gauss congruences.
-- `.elan/`: the Lean toolchain, kept on this drive (not on PATH, nothing on C:).
+Topics are split by whether they had already been formalized elsewhere when checked
+(November 2026, against Mathlib of 2026-11-19, open Mathlib PRs and the Isabelle AFP):
+
+- `New/`: no existing formalization found in any proof assistant.
+- `FormalizedElsewhere/`: already formalized in another library or in an open Mathlib PR.
+  None of these are in Mathlib itself yet.
+
+Each topic `X` has four files:
+
+- `MathInfra/<folder>/X.lean`: the definitions and theorems.
+- `MathInfra/<folder>/X-proofs.md`: the same results and proofs in ordinary language, each
+  tagged with the Lean theorem that checks it.
+- `MathInfraTest/<folder>/X.lean`: known values and the theorems in use.
+- `MathInfraTest/<folder>/XAxioms.lean`: every public theorem with the axioms it depends
+  on, as a check that fails the build if that ever changes.
+
+`.elan/` holds the Lean toolchain, kept on this drive (not on PATH, nothing on C:).
+
+### New
+
+- `LucasSeq`: Lucas sequences `U_n(P, Q)`, `V_n(P, Q)` over any commutative ring: addition,
+  doubling and composition formulas, Binet formulas, strong divisibility, and the behaviour
+  modulo a prime (law of apparition). Mathlib has only special cases (Fibonacci, Chebyshev,
+  Dickson, the Pell solutions of `PellMatiyasevic`, the Lucas–Lehmer sequence); this file
+  proves the first three are special cases. Closest prior art: the one-parameter `U`-only
+  theory `Lucas_Sequences` in the AFP entry *Diophantine_Universal_Pairs*.
+- `GaussSeq`: the Gauss congruences `n ∣ Σ_{d ∣ n} μ(d)·f(n/d)` (also called Dold
+  congruences; such sequences are also called realizable sequences): two characterisations
+  (divisor sums of `d·h(d)`, and congruences modulo prime powers), the subring of sequences
+  satisfying them, Burnside's formula, the two basic examples `aⁿ` (Fermat's little theorem
+  for every modulus) and fixed-point counts of a self-map of a finite set, and necklace
+  numbers. Closest prior art: the necklace proof of Fermat's little theorem in HOL4 (Chan and
+  Norrish, 2013).
+
+### FormalizedElsewhere
+
+- `QAnalog`: q-numbers, q-factorials, Gaussian binomial coefficients, the q-binomial theorem
+  and universality. Mathlib lists q-factorials and q-binomials as a TODO. Formalized in
+  open Mathlib PR [#43780](https://github.com/leanprover-community/mathlib4/pull/43780)
+  (same names `qNat`, `qFactorial`; also q-Pochhammer and the count of subspaces of `𝔽_q^n`)
+  and in the AFP entry *Combinatorial_Q_Analogues* (also q-Vandermonde).
+- `RamanujanSum`: Ramanujan sums `c_q(n)`: the divisor-sum characterisation, values,
+  periodicity, multiplicativity in `q`, Hölder's formula, and `c_q(n)` as a sum of powers of
+  the primitive `q`-th roots of unity in any integral domain that has one. Formalized in the
+  AFP entry *Gauss_Sums* (theory `Ramanujan_Sums`, Apostol chapter 8).
+- `DedekindSum`: the sawtooth function `((x))` and its distribution relation; Dedekind sums
+  `s(h, k)`: symmetries, homogeneity, an integer formula, the bound `|s(h, k)| ≤ s(1, k)`, the
+  reciprocity law, and the integrality of `6k·s(h, k)` with the congruence
+  `12hk·s(h, k) ≡ h² + 1 (mod k)`. Formalized in the AFP entry *Dedekind_Sums* (Apostol,
+  *Modular Functions and Dirichlet Series*, chapter 3).
 
 ## Running
 

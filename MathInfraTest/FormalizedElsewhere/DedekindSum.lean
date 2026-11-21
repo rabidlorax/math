@@ -1,11 +1,11 @@
-import MathInfra.DedekindSum
+import MathInfra.FormalizedElsewhere.DedekindSum
 
 /-!
-# Checks for `MathInfra.DedekindSum`
+# Checks for `MathInfra.FormalizedElsewhere.DedekindSum`
 
 Known values computed straight from the definition, the same values recovered from the
 general theorems, and classical consequences. The axiom audit is in
-`MathInfraTest/DedekindSumAxioms.lean`. Both files are part of `lake build`.
+`MathInfraTest/FormalizedElsewhere/DedekindSumAxioms.lean`. Both files are part of `lake build`.
 -/
 
 open Finset

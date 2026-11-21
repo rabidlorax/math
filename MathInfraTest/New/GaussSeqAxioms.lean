@@ -1,7 +1,7 @@
-import MathInfra.GaussSeq
+import MathInfra.New.GaussSeq
 
 /-!
-# Axiom audit for `MathInfra.GaussSeq`
+# Axiom audit for `MathInfra.New.GaussSeq`
 
 Every public theorem, with the axioms it depends on. `#guard_msgs` turns each line into a
 check, so the build fails if any theorem starts depending on anything else (for example

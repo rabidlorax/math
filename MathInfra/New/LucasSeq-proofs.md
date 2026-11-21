@@ -1,6 +1,6 @@
 # Lucas sequences: the proofs in ordinary language
 
-This is the human-readable companion to `MathInfra/LucasSeq.lean`. Each numbered statement
+This is the human-readable companion to `MathInfra/New/LucasSeq.lean`. Each numbered statement
 names the Lean theorem that checks it, and the proofs follow the same route as the Lean
 proofs.
 
@@ -236,4 +236,4 @@ unit modulo `p` since `p` is odd and `p ∤ Q`. ∎
 
 For `(P, Q) = (1, −1)` this says every odd prime `p` divides the Fibonacci number
 `F(p − (5/p))`; for `(P, Q) = (3, 2)`, 9.2 is Fermat's little theorem for the base `2`. Both
-are checked in `MathInfraTest/LucasSeq.lean`.
+are checked in `MathInfraTest/New/LucasSeq.lean`.

@@ -1,10 +1,10 @@
-import MathInfra.QAnalog
+import MathInfra.FormalizedElsewhere.QAnalog
 
 /-!
-# Checks for `MathInfra.QAnalog`
+# Checks for `MathInfra.FormalizedElsewhere.QAnalog`
 
 Known values, the q-Pascal triangle, and worked uses of the main theorems. The axiom audit
-is in `MathInfraTest/Axioms.lean`. Both files are part of `lake build`.
+is in `MathInfraTest/FormalizedElsewhere/QAnalogAxioms.lean`. Both files are part of `lake build`.
 -/
 
 open Polynomial

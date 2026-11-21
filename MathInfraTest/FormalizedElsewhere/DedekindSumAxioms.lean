@@ -1,7 +1,7 @@
-import MathInfra.DedekindSum
+import MathInfra.FormalizedElsewhere.DedekindSum
 
 /-!
-# Axiom audit for `MathInfra.DedekindSum`
+# Axiom audit for `MathInfra.FormalizedElsewhere.DedekindSum`
 
 Every public theorem, with the axioms it depends on. `#guard_msgs` turns each line into a
 check, so the build fails if any theorem starts depending on anything else (for example

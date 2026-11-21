@@ -1,6 +1,6 @@
 # Gauss congruences: the proofs in ordinary language
 
-This is the human-readable companion to `MathInfra/GaussSeq.lean`. Each numbered statement
+This is the human-readable companion to `MathInfra/New/GaussSeq.lean`. Each numbered statement
 names the Lean theorem that checks it, and the proofs follow the same route as the Lean
 proofs.
 

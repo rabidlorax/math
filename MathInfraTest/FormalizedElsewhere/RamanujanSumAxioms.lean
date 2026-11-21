@@ -1,7 +1,7 @@
-import MathInfra.RamanujanSum
+import MathInfra.FormalizedElsewhere.RamanujanSum
 
 /-!
-# Axiom audit for `MathInfra.RamanujanSum`
+# Axiom audit for `MathInfra.FormalizedElsewhere.RamanujanSum`
 
 Every public theorem, with the axioms it depends on. `#guard_msgs` turns each line into a
 check, so the build fails if any theorem starts depending on anything else (for example

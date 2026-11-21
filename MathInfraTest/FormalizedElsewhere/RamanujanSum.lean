@@ -1,11 +1,11 @@
-import MathInfra.RamanujanSum
+import MathInfra.FormalizedElsewhere.RamanujanSum
 
 /-!
-# Checks for `MathInfra.RamanujanSum`
+# Checks for `MathInfra.FormalizedElsewhere.RamanujanSum`
 
 Known values, and the general theorems specialised to classical facts about the Möbius and
 totient functions and roots of unity. The axiom audit is in
-`MathInfraTest/RamanujanSumAxioms.lean`. Both files are part of `lake build`.
+`MathInfraTest/FormalizedElsewhere/RamanujanSumAxioms.lean`. Both files are part of `lake build`.
 -/
 
 open Finset ArithmeticFunction

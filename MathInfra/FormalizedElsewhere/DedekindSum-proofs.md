@@ -1,6 +1,6 @@
 # Dedekind sums: the proofs in ordinary language
 
-This is the human-readable companion to `MathInfra/DedekindSum.lean`. Each numbered
+This is the human-readable companion to `MathInfra/FormalizedElsewhere/DedekindSum.lean`. Each numbered
 statement names the Lean theorem that checks it, and the proofs follow the same route as the
 Lean proofs.
 

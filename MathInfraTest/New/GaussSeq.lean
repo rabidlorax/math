@@ -1,11 +1,11 @@
-import MathInfra.GaussSeq
+import MathInfra.New.GaussSeq
 
 /-!
-# Checks for `MathInfra.GaussSeq`
+# Checks for `MathInfra.New.GaussSeq`
 
 Known values, and the general theorems specialised to Fermat's little theorem, Euler-type
 congruences, divisor sums, necklace counts and periodic points. The axiom audit is in
-`MathInfraTest/GaussSeqAxioms.lean`. Both files are part of `lake build`.
+`MathInfraTest/New/GaussSeqAxioms.lean`. Both files are part of `lake build`.
 -/
 
 open Finset ArithmeticFunction Function

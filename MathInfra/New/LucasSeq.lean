@@ -1,7 +1,7 @@
 module
 
 public import Mathlib
-public import MathInfra.QAnalog
+public import MathInfra.FormalizedElsewhere.QAnalog
 
 /-!
 # Lucas sequences
@@ -430,7 +430,8 @@ theorem lucasV_one_neg_one_succ (n : ℕ) :
   rw [lucasV_succ, lucasU_one_neg_one, lucasU_one_neg_one]
   ring
 
-/-- `P = q + 1`, `Q = q` (roots `q` and `1`): the `q`-numbers of `MathInfra.QAnalog`. -/
+/-- `P = q + 1`, `Q = q` (roots `q` and `1`): the `q`-numbers of
+`MathInfra.FormalizedElsewhere.QAnalog`. -/
 theorem lucasU_add_one_self (q : R) (n : ℕ) : lucasU (q + 1) q n = qNat q n := by
   induction n using Nat.twoStepInduction with
   | zero => simp

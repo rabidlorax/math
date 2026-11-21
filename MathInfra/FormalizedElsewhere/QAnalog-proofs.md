@@ -1,6 +1,6 @@
 # q-analogues: the proofs in ordinary language
 
-This is the human-readable companion to `MathInfra/QAnalog.lean`. Each numbered statement
+This is the human-readable companion to `MathInfra/FormalizedElsewhere/QAnalog.lean`. Each numbered statement
 names the Lean theorem that checks it; the definitions in section 1 are `qNat`,
 `qFactorial` and `gaussBinom`. The proofs follow the same route as the Lean proofs.
 
@@ -25,7 +25,7 @@ When `q` matters we write `[n]_q` and `G_q(n, k)`.
 ### The q-Pascal triangle
 
 The first rows of `G(n, k)`, computed from P1 (the interior entries of rows 2 to 4 are
-checked in `MathInfraTest/QAnalog.lean`):
+checked in `MathInfraTest/FormalizedElsewhere/QAnalog.lean`):
 
 ```
 n = 0:   1

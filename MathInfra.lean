@@ -1,7 +1,7 @@
 module
 
-public import MathInfra.QAnalog
-public import MathInfra.LucasSeq
-public import MathInfra.RamanujanSum
-public import MathInfra.GaussSeq
-public import MathInfra.DedekindSum
+public import MathInfra.FormalizedElsewhere.QAnalog
+public import MathInfra.FormalizedElsewhere.RamanujanSum
+public import MathInfra.FormalizedElsewhere.DedekindSum
+public import MathInfra.New.LucasSeq
+public import MathInfra.New.GaussSeq
