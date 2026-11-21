@@ -25,7 +25,7 @@ example : ramanujanSum 8 4 = -4 := by
 example : ramanujanSum 8 2 = 0 := by
   rw [show 8 = 2 ^ (2 + 1) by rfl, ramanujanSum_prime_pow_succ 2 Nat.prime_two]; norm_num
 
--- `c_12(4) = c_4(4) * c_3(4) = φ 4 * μ 3 = -2`, by multiplicativity and periodicity.
+-- `c_12(4) = c_4(4) * c_3(4) = φ(4) * μ(3) = -2`, by multiplicativity and periodicity.
 example : ramanujanSum 12 4 = -2 := by
   rw [show 12 = 4 * 3 by rfl, ramanujanSum_mul 4 (by norm_num : Nat.Coprime 4 3),
     ramanujanSum_congr 4 4 (by decide : (4 : ℤ) ≡ 0 [ZMOD 4]),
@@ -33,7 +33,7 @@ example : ramanujanSum 12 4 = -2 := by
     ramanujanSum_zero_right, ramanujanSum_one_right, moebius_apply_prime Nat.prime_three]
   decide
 
--- Hölder's formula at `q = 12`, `n = 4`: `g = 4`, so `c_12(4) * φ 3 = μ 3 * φ 12`.
+-- Hölder's formula at `q = 12`, `n = 4`: `g = 4`, so `c_12(4) * φ(3) = μ(3) * φ(12)`.
 example : ramanujanSum 12 4 * 2 = -1 * 4 := by
   simpa [show Int.gcd 12 4 = 4 by rfl, moebius_apply_prime Nat.prime_three,
     Nat.totient_prime Nat.prime_three, show φ 12 = 4 by decide] using
@@ -55,7 +55,7 @@ example {K : Type*} [Field K] {ζ : K} {q : ℕ} (hζ : IsPrimitiveRoot ζ q) :
     ∑ η ∈ primitiveRoots q K, η = μ q := by
   simpa using hζ.sum_primitiveRoots_pow 1
 
-/-- There are `φ(q)` of them: the case `n = 0`. -/
+/-- Their number is `φ(q)` in `K`: the case `n = 0`. -/
 example {K : Type*} [Field K] {ζ : K} {q : ℕ} (hζ : IsPrimitiveRoot ζ q) :
     ((primitiveRoots q K).card : K) = φ q := by
   simpa using hζ.sum_primitiveRoots_pow 0

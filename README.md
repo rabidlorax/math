@@ -21,8 +21,8 @@ Machine-checked mathematical infrastructure in Lean 4 on top of Mathlib.
   for Lucas sequences.
 - `MathInfra/RamanujanSum.lean`: Ramanujan sums `c_q(n)`: the divisor-sum characterisation,
   values, periodicity, multiplicativity in `q`, Hölder's formula, and `c_q(n)` as a sum of
-  powers of primitive roots of unity in any integral domain with a primitive `q`-th root of
-  unity. Not in Mathlib.
+  powers of the primitive `q`-th roots of unity in any integral domain that has one. Not in
+  Mathlib.
 - `RamanujanSum-proofs.md`: the same in ordinary language.
 - `MathInfraTest/RamanujanSum.lean`, `MathInfraTest/RamanujanSumAxioms.lean`: checks and axiom
   audit for Ramanujan sums.

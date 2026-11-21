@@ -35,10 +35,10 @@ primitive roots of unity but not these sums.
 * `ramanujanSum_prime_pow_succ`, `ramanujanSum_prime` : the values at prime powers.
 * `ramanujanSum_mul_totient`, `ramanujanSum_eq_moebius_mul_totient_div` : **Hölder's
   formula**, `c_q(n) * φ(q / g) = μ(q / g) * φ(q)` with `g = gcd(q, n)`.
-* `IsPrimitiveRoot.sum_nthRootsFinset_pow` : the `n`-th powers of the `d`-th roots of unity
-  sum to `d` if `d ∣ n` and to `0` otherwise.
+* `IsPrimitiveRoot.sum_nthRootsFinset_pow` : if there is a primitive `d`-th root of unity, the
+  `n`-th powers of the `d`-th roots of unity sum to `d` if `d ∣ n` and to `0` otherwise.
 * `IsPrimitiveRoot.sum_primitiveRoots_pow`, `IsPrimitiveRoot.sum_pow_coprime` : `c_q(n)` as
-  a sum of roots of unity, in any integral domain.
+  a sum of roots of unity, in any integral domain with a primitive `q`-th root of unity.
 * `ramanujanSum_eq_sum_exp`  : `c_q(n) = ∑_{k < q, gcd(k, q) = 1} exp(2πikn/q)` in `ℂ`.
 -/
 
@@ -70,7 +70,7 @@ theorem ramanujanSum_congr {m : ℤ} (h : n ≡ m [ZMOD q]) :
 
 /-! ### Möbius inversion -/
 
-/-- `c_q(n)` is the Möbius transform of `d ↦ d` if `d ∣ n`, `d ↦ 0` otherwise. -/
+/-- `c_q(n) = ∑_{ab = q} μ(a) * δₙ(b)`, where `δₙ(b) = b` if `b ∣ n` and `0` otherwise. -/
 theorem ramanujanSum_eq_sum_divisorsAntidiagonal :
     ramanujanSum q n =
       ∑ x ∈ q.divisorsAntidiagonal, μ x.1 * if (x.2 : ℤ) ∣ n then (x.2 : ℤ) else 0 := by
@@ -88,19 +88,18 @@ theorem sum_ramanujanSum :
     (g := fun d => if (d : ℤ) ∣ n then (d : ℤ) else 0)).mpr (fun d _ => ?_) q hq
   simp [ramanujanSum_eq_sum_divisorsAntidiagonal]
 
-/-- Uniqueness: a function whose divisor sums are those of `sum_ramanujanSum`, for the divisors
-of `q`, takes the value `c_q(n)` at `q`. -/
+/-- Uniqueness: for `q > 0`, a function whose divisor sums agree with those of
+`sum_ramanujanSum` at every divisor of `q` takes the value `c_q(n)` at `q`. -/
 theorem eq_ramanujanSum_of_sum_eq {R : Type*} [Ring R] {f : ℕ → R} {q : ℕ} (hq : 0 < q)
     (hf : ∀ d, d ∣ q → ∑ e ∈ d.divisors, f e = if (d : ℤ) ∣ n then (d : R) else 0) :
     f q = ramanujanSum q n := by
   have hs : ∀ a b, a ∣ b → b ∈ {d | d ∣ q} → a ∈ {d | d ∣ q} := fun _ _ h h' => h.trans h'
-  have h1 := (sum_eq_iff_sum_mul_moebius_eq_on (f := f)
+  rw [← (sum_eq_iff_sum_mul_moebius_eq_on (f := f)
     (g := fun d => if (d : ℤ) ∣ n then (d : R) else 0) _ hs).mp
-    (fun d _ hd => hf d hd) q hq dvd_rfl
-  have h2 := (sum_eq_iff_sum_mul_moebius_eq_on (f := fun d => (ramanujanSum d n : R))
-    (g := fun d => if (d : ℤ) ∣ n then (d : R) else 0) _ hs).mp
-    (fun d _ _ => by rw [← Int.cast_sum, sum_ramanujanSum]; split_ifs <;> simp) q hq dvd_rfl
-  rw [← h1, ← h2]
+    (fun d _ hd => hf d hd) q hq dvd_rfl, ramanujanSum_eq_sum_divisorsAntidiagonal]
+  push_cast
+  refine sum_congr rfl fun x _ => ?_
+  split_ifs <;> simp
 
 /-! ### Values -/
 
@@ -259,8 +258,8 @@ section RootsOfUnity
 
 variable {R : Type*} [CommRing R] [IsDomain R]
 
-/-- The `n`-th powers of the `d`-th roots of unity sum to `d` if `d ∣ n` and to `0`
-otherwise. -/
+/-- If there is a primitive `d`-th root of unity, the `n`-th powers of the `d`-th roots of unity
+sum to `d` if `d ∣ n` and to `0` otherwise. -/
 theorem IsPrimitiveRoot.sum_nthRootsFinset_pow {ξ : R} {d : ℕ} (hξ : IsPrimitiveRoot ξ d)
     (n : ℕ) : ∑ η ∈ nthRootsFinset d (1 : R), η ^ n = if d ∣ n then (d : R) else 0 := by
   rcases d.eq_zero_or_pos with rfl | hd
@@ -284,7 +283,8 @@ theorem IsPrimitiveRoot.sum_nthRootsFinset_pow {ξ : R} {d : ℕ} (hξ : IsPrimi
     have hne : ξ ^ n - 1 ≠ 0 := sub_ne_zero.mpr fun h1 => h ((hξ.pow_eq_one_iff_dvd n).mp h1)
     exact (mul_eq_zero.mp (by linear_combination hS : (ξ ^ n - 1) * _ = 0)).resolve_left hne
 
-/-- `c_q(n)` is the sum of the `n`-th powers of the primitive `q`-th roots of unity. -/
+/-- If there is a primitive `q`-th root of unity, `c_q(n)` is the sum of the `n`-th powers of
+the primitive `q`-th roots of unity. -/
 theorem IsPrimitiveRoot.sum_primitiveRoots_pow {ζ : R} {q : ℕ} (hζ : IsPrimitiveRoot ζ q)
     (n : ℕ) : ∑ η ∈ primitiveRoots q R, η ^ n = ramanujanSum q n := by
   classical

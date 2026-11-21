@@ -9,8 +9,8 @@ Möbius function and `φ` is Euler's totient. Write
 
 `δₙ(d) = d` if `d ∣ n`, and `δₙ(d) = 0` otherwise.
 
-Lean's convention is that `0` has no divisors and that there are no `0`-th roots of unity,
-primitive or not, so sums over these are `0`.
+Lean's convention is that `0` has no divisors and that the sets of `0`-th roots of unity and of
+primitive `0`-th roots of unity are empty, so sums over these are `0`.
 
 ## 1. Definition
 
@@ -39,8 +39,7 @@ to 2.1. ∎
 ring. If `Σ_{e ∣ d} f(e) = δₙ(d)` for every `d ∣ q`, then `f(q) = c_q(n)`.
 
 *Proof.* The divisors of `q` form a set closed under taking divisors, and Möbius inversion
-holds on such a set. So `f(q) = Σ_{ab = q} μ(a)·δₙ(b)`. By 2.2 the same holds for `c`, so
-`f(q) = c_q(n)`. ∎
+holds on such a set. So `f(q) = Σ_{ab = q} μ(a)·δₙ(b)`, which is `c_q(n)` by 2.1. ∎
 
 ## 3. Values
 
@@ -77,11 +76,11 @@ multiplicative, and `c_q(n) = (μ ∗ δₙ)(q)` by 2.1. ∎
 **5.1** (`ramanujanSum_mul_totient`). Let `g = gcd(q, n)`. Then
 `c_q(n)·φ(q/g) = μ(q/g)·φ(q)`.
 
-*Proof.* Fix `n`. Both sides are multiplicative in `q` (`c_q(n)` by 4.1). Indeed, for coprime
-`a`, `b` we have `gcd(ab, n) = gcd(a, n)·gcd(b, n)`. So `q ↦ q/gcd(q, n)` sends `ab` to the
-product of the images of `a` and `b`, and these images are coprime. Composing a multiplicative
-function with this map therefore gives a multiplicative function, and pointwise products of
-multiplicative functions are multiplicative. So it suffices to check prime powers.
+*Proof.* Fix `n`. For `q = 0` both sides are `0`. For coprime `a`, `b` we have
+`gcd(ab, n) = gcd(a, n)·gcd(b, n)`, so `q ↦ q/gcd(q, n)` sends `ab` to the product of the
+images of `a` and `b`, which are coprime. Composing a multiplicative function with this map
+therefore gives a multiplicative function. With 4.1, both sides are pointwise products of
+multiplicative functions of `q`, hence multiplicative, so it suffices to check prime powers.
 
 For `q = 1` both sides are `1`. Let `q = p^(k+1)`. Then `g = p^j` with `j ≤ k + 1`, and
 `p^j ∣ n`, but `p^(j+1) ∤ n` when `j ≤ k`. Use 3.3 and `φ(p^(k+1)) = p^k(p − 1)`:
@@ -127,7 +126,7 @@ is a primitive `d`-th root, this is `δₙ(d)` by 6.1. Now apply 2.3. ∎
 roots of unity, and `ζ^(kn) = (ζ^k)^n`. Apply 6.2. ∎
 
 **6.4** (`ramanujanSum_eq_sum_exp`). In `ℂ`: `c_q(n) = Σ_{k < q, gcd(k, q) = 1} e^(2πikn/q)`.
-This is 6.3 with `ζ = e^(2πi/q)`.
+For `q = 0` both sides are `0`; otherwise this is 6.3 with `ζ = e^(2πi/q)`.
 
 With `n = 1` and `n = 0`, 6.2 recovers two classical facts. The primitive `q`-th roots of unity
 sum to `μ(q)`, and (in characteristic `0`) there are `φ(q)` of them.
