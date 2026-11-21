@@ -26,6 +26,13 @@ Machine-checked mathematical infrastructure in Lean 4 on top of Mathlib.
 - `RamanujanSum-proofs.md`: the same in ordinary language.
 - `MathInfraTest/RamanujanSum.lean`, `MathInfraTest/RamanujanSumAxioms.lean`: checks and axiom
   audit for Ramanujan sums.
+- `MathInfra/DedekindSum.lean`: the sawtooth function `((x))` and its distribution relation;
+  Dedekind sums `s(h, k)`: symmetries, homogeneity, an integer formula, the bound
+  `|s(h, k)| ≤ s(1, k)`, the reciprocity law, and the integrality of `6k·s(h, k)` with the
+  congruence `12hk·s(h, k) ≡ h² + 1 (mod k)`. Not in Mathlib.
+- `DedekindSum-proofs.md`: the same in ordinary language.
+- `MathInfraTest/DedekindSum.lean`, `MathInfraTest/DedekindSumAxioms.lean`: checks and axiom
+  audit for Dedekind sums.
 - `.elan/`: the Lean toolchain, kept on this drive (not on PATH, nothing on C:).
 
 ## Running
@@ -65,3 +72,13 @@ From Ramanujan sums:
 - Ramanujan expansions, such as `σ(n)/n = (π²/6)·Σ_{q ≥ 1} c_q(n)/q²` for `n ≥ 1`.
 - Kloosterman sums `S(m, n; q)`, which reduce to `c_q(m)` when `n = 0`, and the singular series
   of the circle method.
+
+From Dedekind sums:
+
+- The transformation law of the Dedekind eta function under `SL₂(ℤ)`, whose root of unity is
+  expressed through `s(d, c)`, and the Rademacher function `Φ`.
+- The cotangent formula `s(h, k) = (1/(4k))·Σ_{0<r<k} cot(πr/k)·cot(πhr/k)` for coprime
+  `h, k`, from a finite Fourier expansion of `((r/k))`.
+- Rademacher's three-term reciprocity, and Dedekind–Rademacher sums with shifts.
+- Rademacher's exact formula for the partition function, whose Kloosterman-type sums have
+  phases `e^(πi·s(h, k))`.
