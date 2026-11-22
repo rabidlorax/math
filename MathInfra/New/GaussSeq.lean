@@ -327,7 +327,8 @@ end PeriodicPts
 /-- The necklace number `M(a, n) = (∑_{d ∣ n} μ(d) * a ^ (n / d)) / n`, an exact division.
 For `a ≥ 0` it classically counts the aperiodic necklaces of `n` beads in `a` colours, and for
 `a` a prime power the monic irreducible polynomials of degree `n` over the field with `a`
-elements. -/
+elements (`card_monicIrreducibles_eq_necklace` in `MathInfra.FormalizedElsewhere.IrreducibleCount`).
+-/
 def necklace (a : ℤ) (n : ℕ) : ℤ := orbitCount (a ^ ·) n
 
 variable (a : ℤ)

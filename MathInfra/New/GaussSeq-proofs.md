@@ -145,8 +145,9 @@ positive divisor of `n`. Sort the fixed points of `Tⁿ` by their minimal period
 **Definition** (`necklace`). `M(a, n) = O_f(n)` for `f(n) = aⁿ`, that is,
 `M(a, n) = (Σ_{d ∣ n} μ(d)·a^(n/d))/n`, an exact division by 6.1. Classically, for `a ≥ 0`
 this counts the aperiodic necklaces of `n` beads in `a` colours, and for `a` a prime power the
-monic irreducible polynomials of degree `n` over the field with `a` elements. Neither fact is
-proved here.
+monic irreducible polynomials of degree `n` over the field with `a` elements. The first fact is
+not proved here. The second is `card_monicIrreducibles_eq_necklace` in
+`MathInfra/FormalizedElsewhere/IrreducibleCount.lean`.
 
 By 6.1, the results of §2 and §5 apply.
 

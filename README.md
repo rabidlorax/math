@@ -69,6 +69,19 @@ Each topic `X` has four files:
   congruences ⇒ integral zeta series" is `integral_exp_of_dold` in the Lean project
   `the-omega-institute/trureturing`. The converse, the Witt products and the trace and Lucas
   results were not found elsewhere.
+- `IrreducibleCount`: the number `M(n)` of monic irreducible polynomials of degree `n` over a
+  finite field with `q` elements. For `n > 0`, `X^(q^n) − X` is the product of those whose
+  degree divides `n`. From this follow Gauss's formula `n·M(n) = Σ_{d ∣ n} μ(d)·q^(n/d)` (so
+  `M(n)` is the necklace number `M(q, n)` of `GaussSeq`), the counts in degree `1` and in prime
+  degree, the prime polynomial theorem `q^n − 2q^⌊n/2⌋ < n·M(n) ≤ q^n` for `n > 0`, and
+  existence in every positive degree. Mathlib (2026-11-19) has the divisibility criterion used
+  for the factorisation but no count, and neither has the open PR
+  [#45947](https://github.com/leanprover-community/mathlib4/pull/45947) (Rabin's test).
+  Gauss's formula, the counts in degrees `1` and `2`, the bound `q^n/(2n) ≤ M(n)`, existence
+  and the multiplicity of each factor of `X^(q^n) − X` are in the AFP entry *Finite_Fields*
+  (Karayel, theory `Card_Irreducible_Polynomials`). The product identity as stated, the
+  prime-degree count, the upper bound and the lower bound (sharper for `n ≥ 3`) were not found
+  elsewhere.
 
 ## Running
 
@@ -120,8 +133,6 @@ From Dedekind sums:
 
 From Gauss congruences:
 
-- Gauss's count `M(q, n)` of the monic irreducible polynomials of degree `n` over `𝔽_q`, from
-  the fixed points of the Frobenius map on `𝔽_(qⁿ)`.
 - Lyndon words, counted by `M(a, n)`, and the Chen–Fox–Lyndon factorisation.
 - The big Witt vectors and the necklace ring, whose ghost components are these sequences.
 
@@ -134,3 +145,13 @@ From zeta series:
 - The Gauss congruences for the traces `Tr(αⁿ)` of an algebraic integer `α`, using the integer
   matrix of multiplication by `α`.
 - Which linear recurrence sequences satisfy the Gauss congruences (Minton's theorem).
+
+From counting irreducible polynomials:
+
+- The zeta function of `𝔽_q[X]`: `Π_f (1 − t^(deg f))⁻¹ = 1/(1 − qt)` over monic irreducible `f`,
+  as an identity of power series.
+- Primes in arithmetic progressions in `𝔽_q[X]` (Dirichlet's theorem for polynomials).
+- The number of elements of `𝔽_(qⁿ)` of degree exactly `n` over `𝔽_q`, which is `n·M(n)`, and
+  the irreducible factors of cyclotomic polynomials over `𝔽_q`.
+- The count `q^n − q^(n−1)` of monic squarefree polynomials of degree `n ≥ 2`, and the factorisation
+  statistics behind the analysis of Berlekamp's and Rabin's algorithms.
