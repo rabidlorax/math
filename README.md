@@ -133,6 +133,24 @@ Each topic `X` has four files:
   polynomials, `A_n(1) = n!` and the generating function are in the AFP entry
   *Linear_Recurrences* (Eberl, theory `Eulerian_Polynomials`). The descent count, Worpitzky's
   identity, the symmetry and the explicit formula were not found elsewhere.
+- `KloostermanSum`: Kloosterman sums `S(ψ; m, n) = Σ_{x ∈ (ℤ/q)ˣ} ψ(mx + nx⁻¹)` for any additive
+  character `ψ` with values in a commutative ring: symmetries, `S(um, n) = S(m, un)` and so
+  `S(u, n) = S(1, un)` for a unit `u`, twisted multiplicativity
+  `S(m, n; q₁q₂) = S(q̄₂m, q̄₂n; q₁)·S(q̄₁m, q̄₁n; q₂)` for coprime `q₁`, `q₂`, where `q̄₂` is the
+  inverse of `q₂` modulo `q₁` and `q̄₁` that of `q₁` modulo `q₂`, and `S(ψ; m, 0) = c_q(m)` (the
+  Ramanujan sums of `RamanujanSum`) for primitive `ψ` with values in an integral domain. Over `ℂ`
+  the sums are real, and for primitive `ψ`, `Σ_m |S(ψ; m, n)|² = q·φ(q)` and the fourth moment
+  `Σ_{m, n} |S(ψ; m, n)|⁴` is `q²` times the additive energy of the hyperbola `{(x, x⁻¹)}`. For a
+  prime `p` that energy is at most `3(p − 1)²`, which gives Kloosterman's bound
+  `|S(ψ; m, n)| ≤ 3^(1/4)·p^(3/4)` for `(m, n) ≠ (0, 0)`. Not in Mathlib (2026-11-19, no PR). The
+  Lean 4 project [jieun38-kim/Kloosterman](https://github.com/jieun38-kim/Kloosterman) (2023) has
+  the definition over `ℂ`, invariance modulo `q`, `S(a, b) = S(b, a)` and `S(a, b) = S(1, ab)` for
+  `a`, `b` coprime to `q`, but leaves `S(um, n) = S(m, un)` and twisted multiplicativity as
+  commented-out statements with `sorry`. Open TauCeti roadmap PRs and the project
+  `BrandonMYates/kklab` define Kloosterman sums over finite fields but prove none of the results
+  here. Nothing in the AFP, Rocq or HOL. The general character, the proofs of `S(um, n) = S(m, un)`
+  and of twisted multiplicativity, the Ramanujan-sum case, the moments and Kloosterman's bound were
+  not found elsewhere.
 
 ## Running
 
@@ -167,8 +185,7 @@ From Ramanujan sums:
 - Orthogonality: for `r, s ∣ q`, `Σ_{n mod q} c_r(n)·c_s(n)` is `q·φ(r)` if `r = s` and `0`
   otherwise.
 - Ramanujan expansions, such as `σ(n)/n = (π²/6)·Σ_{q ≥ 1} c_q(n)/q²` for `n ≥ 1`.
-- Kloosterman sums `S(m, n; q)`, which reduce to `c_q(m)` when `n = 0`, and the singular series
-  of the circle method.
+- The singular series of the circle method.
 
 From Dedekind sums:
 
@@ -234,3 +251,14 @@ From Eulerian numbers:
 - Real-rootedness of `A_n(t)`, hence log-concavity and the central limit theorem for descents.
 - Major index and `q`-Eulerian polynomials (MacMahon's equidistribution), and type-`B`
   Eulerian numbers for signed permutations.
+
+From Kloosterman sums:
+
+- Weil's bound `|S(m, n; p)| ≤ 2√p` for `mn ≠ 0`, through the Riemann hypothesis for curves or
+  Stepanov's method, and its extension `|S(m, n; q)| ≤ τ(q)·gcd(m, n, q)^(1/2)·q^(1/2)`
+  (Weil–Estermann), by twisted multiplicativity and the prime-power case.
+- Explicit evaluation at prime powers `p^k`, `k ≥ 2` (stationary phase), and Salié sums, which
+  have a closed form.
+- Selberg's identity `S(m, n; q) = Σ_{d ∣ (m, n, q)} d·S(mn/d², 1; q/d)`.
+- The Fourier coefficients of Poincaré series (series of Kloosterman sums), and the Petersson and
+  Kuznetsov formulas.

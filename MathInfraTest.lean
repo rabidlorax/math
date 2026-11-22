@@ -18,3 +18,5 @@ import MathInfraTest.FormalizedElsewhere.ZetaSeries
 import MathInfraTest.FormalizedElsewhere.ZetaSeriesAxioms
 import MathInfraTest.FormalizedElsewhere.EulerianNumber
 import MathInfraTest.FormalizedElsewhere.EulerianNumberAxioms
+import MathInfraTest.FormalizedElsewhere.KloostermanSum
+import MathInfraTest.FormalizedElsewhere.KloostermanSumAxioms

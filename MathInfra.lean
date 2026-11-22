@@ -10,3 +10,4 @@ public import MathInfra.New.GaussSeq
 public import MathInfra.New.LucasRank
 public import MathInfra.FormalizedElsewhere.ZetaSeries
 public import MathInfra.FormalizedElsewhere.EulerianNumber
+public import MathInfra.FormalizedElsewhere.KloostermanSum
