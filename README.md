@@ -37,6 +37,21 @@ Each topic `X` has four files:
   for every modulus) and fixed-point counts of a self-map of a finite set, and necklace
   numbers. Closest prior art: the necklace proof of Fermat's little theorem in HOL4 (Chan and
   Norrish, 2013).
+- `LucasRank`: the rank of apparition of a Lucas sequence (also called the rank of appearance or
+  entry point): the least `r > 0` with `U_r = 0` in any commutative ring. When `Q` is a unit,
+  `U_n = 0` exactly when `r ∣ n`; the rank behaves well under ring homomorphisms and is the
+  `lcm` over a product of rings. Over a finite ring with `Q` a unit every Lucas sequence is
+  purely periodic, and the periods of `U` are exactly the multiples of `r·ord(U_(r+1))` (for
+  Fibonacci numbers, the Pisano period). Modulo an odd prime `p ∤ Q` the rank divides
+  `p − (D/p)`, and modulo any prime `p ∤ Q` it is at most `p + 1`. This gives the Lucas `N + 1`
+  primality test. Also Lucas probable primes and pseudoprimes (the smallest for `(1, −1)` is
+  `323`). Mathlib of 2026-11-19 has the `N − 1` test `lucas_primality` and the Lucas–Lehmer test
+  but no rank of apparition, nor has the Lean project TauCeti, which has Lucas sequences. Weaker
+  forms exist elsewhere: some period exists in the AFP theory `Lucas_Sequences` (`Q = 1`), and
+  agda-unimath has the Fibonacci Pisano period and entry point, with one direction of
+  `m ∣ F_n ↔ r ∣ n`. Open Mathlib PR
+  [#44020](https://github.com/leanprover-community/mathlib4/pull/44020) has the Fibonacci law of
+  apparition, which `LucasSeq` generalises.
 
 ### FormalizedElsewhere
 
@@ -131,9 +146,6 @@ None of the following is done here; these are the natural next steps.
 
 From Lucas sequences:
 
-- Lucas pseudoprimes and the Lucas `n + 1` primality test; the Lucas–Lehmer test as a
-  corollary.
-- The rank of apparition as a definition, and periodicity modulo `m` (Pisano periods).
 - Primitive divisors (Carmichael's theorem; Zsigmondy for the case `(a + b, ab)`).
 - Solutions of Pell-type equations `x² − D y² = 4 Qⁿ` via `lucasV_sq`.
 
@@ -155,6 +167,15 @@ From Dedekind sums:
 - Rademacher's three-term reciprocity, and Dedekind–Rademacher sums with shifts.
 - Rademacher's exact formula for the partition function, whose Kloosterman-type sums have
   phases `e^(πi·s(h, k))`.
+
+From the rank of apparition:
+
+- The Lucas–Lehmer test as a corollary of the `N + 1` test, and its relatives for
+  `N = k·2^n − 1` (Lucas–Lehmer–Riesel).
+- The converse of the `N + 1` test (for prime `N` some `(P, Q)` has rank `N + 1`), strong
+  Lucas probable primes, and the Baillie–PSW test.
+- Pisano periods: `π(p^k) ∣ p^(k−1)·π(p)`, `π(m) ≤ 6m`, Wall–Sun–Sun primes.
+- Primality certificates from partial factorisations of `N + 1` (the analogue of Pocklington).
 
 From Gauss congruences:
 

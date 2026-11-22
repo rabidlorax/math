@@ -12,6 +12,8 @@ import MathInfraTest.New.LucasSeq
 import MathInfraTest.New.LucasSeqAxioms
 import MathInfraTest.New.GaussSeq
 import MathInfraTest.New.GaussSeqAxioms
+import MathInfraTest.New.LucasRank
+import MathInfraTest.New.LucasRankAxioms
 import MathInfraTest.FormalizedElsewhere.ZetaSeries
 import MathInfraTest.FormalizedElsewhere.ZetaSeriesAxioms
 import MathInfraTest.FormalizedElsewhere.EulerianNumber
