@@ -14,3 +14,5 @@ import MathInfraTest.New.GaussSeq
 import MathInfraTest.New.GaussSeqAxioms
 import MathInfraTest.FormalizedElsewhere.ZetaSeries
 import MathInfraTest.FormalizedElsewhere.ZetaSeriesAxioms
+import MathInfraTest.FormalizedElsewhere.EulerianNumber
+import MathInfraTest.FormalizedElsewhere.EulerianNumberAxioms

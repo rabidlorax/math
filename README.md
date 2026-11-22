@@ -97,6 +97,16 @@ Each topic `X` has four files:
   (Karayel, theory `Card_Irreducible_Polynomials`). The product identity as stated, the
   prime-degree count, the upper bound and the lower bound (sharper for `n ≥ 3`) were not found
   elsewhere.
+- `EulerianNumber`: Eulerian numbers `A(n, k)` and Eulerian polynomials `A_n(t)` (also called
+  Euler–Frobenius numbers and polynomials; not the Euler numbers). `A(n, k)` counts the
+  permutations of `n` letters with `k` descents. Also: symmetry, `Σ_k A(n, k) = n!`,
+  `A(n, 1) = 2ⁿ − n − 1`, Worpitzky's identity `xⁿ = Σ_k A(n, k)·C(x + k, n)`, the recurrence
+  `A_{n+1} = (1 + nt)·A_n + t(1 − t)·A_n'`, the generating function
+  `Σ_m (m + 1)ⁿ·tᵐ = A_n(t)/(1 − t)ⁿ⁺¹`, and the explicit formula
+  `A(n, k) = Σ_{j ≤ k} (−1)ʲ·C(n + 1, j)·(k + 1 − j)ⁿ`. Not in Mathlib (2026-11-21, no PR). The
+  polynomials, `A_n(1) = n!` and the generating function are in the AFP entry
+  *Linear_Recurrences* (Eberl, theory `Eulerian_Polynomials`). The descent count, Worpitzky's
+  identity, the symmetry and the explicit formula were not found elsewhere.
 
 ## Running
 
@@ -179,3 +189,14 @@ From Wolstenholme's theorem:
   `v_p(ab(a − b))`, and supercongruences for Apéry numbers.
 - Lerch's formula for `q_p(a)` and the Wieferich criterion for the first case of Fermat's
   last theorem.
+
+From Eulerian numbers:
+
+- Sums of powers `Σ_{m<N} mⁿ` and the values `Li_(−n)(t) = t·A_n(t)/(1 − t)ⁿ⁺¹` of the
+  polylogarithm (the power-series identity is in the AFP entry), and Frobenius's formula
+  `A_n(t) = Σ_k k!·S(n, k)·(t − 1)ⁿ⁻ᵏ` with Stirling numbers of the second kind.
+- Ehrhart theory: `A_n(t)` is the `h*`-polynomial of the cube `[0, 1]ⁿ`, and `A(n, k)/n!` is the
+  volume of the slice `k ≤ x₁ + ⋯ + xₙ ≤ k + 1` of the cube (Laplace), a hypersimplex.
+- Real-rootedness of `A_n(t)`, hence log-concavity and the central limit theorem for descents.
+- Major index and `q`-Eulerian polynomials (MacMahon's equidistribution), and type-`B`
+  Eulerian numbers for signed permutations.
