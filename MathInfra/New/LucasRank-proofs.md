@@ -2,7 +2,7 @@
 
 This is the human-readable companion to `MathInfra/New/LucasRank.lean`. Each numbered statement
 names the Lean theorem that checks it, and the proofs follow the same route as the Lean proofs.
-Numbers such as "LucasSeq 2.1" refer to `MathInfra/New/LucasSeq-proofs.md`.
+Numbers such as "LucasSeq 2.1" refer to `MathInfra/FormalizedElsewhere/LucasSeq-proofs.md`.
 
 Throughout, `R` and `S` are commutative rings, `P`, `Q` are in `R`, `U = U(P, Q)` is the Lucas
 sequence of the first kind, and `D = P² − 4Q`. A *solution* is any `W : ℕ → R` with

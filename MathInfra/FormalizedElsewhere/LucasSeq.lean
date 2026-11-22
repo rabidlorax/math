@@ -59,6 +59,14 @@ Modulo an odd prime `p` (integers `P`, `Q`):
 * `lucasV_prime_modEq`            : `V p ≡ P`.
 * `lucasU_prime_modEq`            : `U p ≡ (D / p)`, the Legendre symbol.
 * `prime_dvd_lucasU_sub_legendreSym` : the law of apparition, `p ∣ U (p - (D / p))` if `p ∤ Q`.
+
+## Prior art
+
+Checked in November 2026. Mathlib (2026-11-19) has only the special cases above. The Lean
+project TauCeti (`TauCeti/NumberTheory/LucasSequence/`) has `lucasU` and `lucasV` under the same
+names, with the algebraic identities, strong divisibility and the Fibonacci, Mersenne,
+Lucas–Lehmer, Dickson and Chebyshev cases, but not the `q`-number case or anything modulo a
+prime. The open Mathlib PR #44020 has the law of apparition for Fibonacci numbers.
 -/
 
 @[expose] public section

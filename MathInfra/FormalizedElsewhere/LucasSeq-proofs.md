@@ -1,13 +1,31 @@
 # Lucas sequences: the proofs in ordinary language
 
-This is the human-readable companion to `MathInfra/New/LucasSeq.lean`. Each numbered statement
-names the Lean theorem that checks it, and the proofs follow the same route as the Lean
-proofs.
+This is the human-readable companion to `MathInfra/FormalizedElsewhere/LucasSeq.lean`. Each
+numbered statement names the Lean theorem that checks it, and the proofs follow the same route
+as the Lean proofs.
 
 Throughout, `R` is a commutative ring, `P` and `Q` are elements of `R`, and
 `D = P² − 4Q` is the discriminant of `x² − Px + Q`. Nothing is ever divided by `2`, by `D`
 or by a difference of roots, so everything in sections 1 to 8 (except 8.5, which is over `ℤ`)
 holds in every commutative ring, including characteristic 2 and rings with zero divisors.
+
+## Prior art
+
+Checked in November 2026.
+
+- **Mathlib** (pinned at 2026-11-19) has only special cases: Fibonacci numbers, Chebyshev and
+  Dickson polynomials, the Pell solutions of `PellMatiyasevic` and the Lucas–Lehmer sequence.
+- **TauCeti** ([TauCetiProject/TauCeti](https://github.com/TauCetiProject/TauCeti), a Lean 4
+  library on Mathlib), folder `TauCeti/NumberTheory/LucasSequence/`, has `lucasU` and `lucasV`
+  under the same names, with the addition, doubling and composition formulas, Cassini's
+  identity, `V² − D·U² = 4Qⁿ`, the Binet formulas, strong divisibility and the Fibonacci,
+  Mersenne, Lucas–Lehmer, Dickson and Chebyshev cases.
+- **Isabelle AFP**, entry *Diophantine_Universal_Pairs*, theory `Lucas_Sequences`: the
+  one-parameter `U`-only theory.
+- Not in TauCeti: the `q`-number case (§7, `lucasU_add_one_self`; TauCeti's
+  `lucasU_add_mul_succ` gives it at `y = 1` but does not state it) and the results modulo a
+  prime (§9). For Fibonacci numbers, the law of apparition is in the open Mathlib PR
+  [#44020](https://github.com/leanprover-community/mathlib4/pull/44020).
 
 ## 1. Definitions
 
@@ -236,4 +254,4 @@ unit modulo `p` since `p` is odd and `p ∤ Q`. ∎
 
 For `(P, Q) = (1, −1)` this says every odd prime `p` divides the Fibonacci number
 `F(p − (5/p))`; for `(P, Q) = (3, 2)`, 9.2 is Fermat's little theorem for the base `2`. Both
-are checked in `MathInfraTest/New/LucasSeq.lean`.
+are checked in `MathInfraTest/FormalizedElsewhere/LucasSeq.lean`.

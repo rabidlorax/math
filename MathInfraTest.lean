@@ -8,8 +8,8 @@ import MathInfraTest.FormalizedElsewhere.Wolstenholme
 import MathInfraTest.FormalizedElsewhere.WolstenholmeAxioms
 import MathInfraTest.FormalizedElsewhere.IrreducibleCount
 import MathInfraTest.FormalizedElsewhere.IrreducibleCountAxioms
-import MathInfraTest.New.LucasSeq
-import MathInfraTest.New.LucasSeqAxioms
+import MathInfraTest.FormalizedElsewhere.LucasSeq
+import MathInfraTest.FormalizedElsewhere.LucasSeqAxioms
 import MathInfraTest.New.GaussSeq
 import MathInfraTest.New.GaussSeqAxioms
 import MathInfraTest.New.LucasRank

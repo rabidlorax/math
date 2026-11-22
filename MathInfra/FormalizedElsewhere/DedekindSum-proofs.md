@@ -1,12 +1,21 @@
 # Dedekind sums: the proofs in ordinary language
 
-This is the human-readable companion to `MathInfra/FormalizedElsewhere/DedekindSum.lean`. Each numbered
-statement names the Lean theorem that checks it, and the proofs follow the same route as the
-Lean proofs.
+This is the human-readable companion to `MathInfra/FormalizedElsewhere/DedekindSum.lean`. Each
+numbered statement names the Lean theorem that checks it, and the proofs follow the same route
+as the Lean proofs.
 
 Throughout, `⌊x⌋` and `⌈x⌉` are the floor and ceiling of `x`, `{x} = x − ⌊x⌋` is its fractional
 part, and for natural numbers `m mod k` is the remainder. A sum over `r < k` runs over
 `r = 0, 1, …, k − 1`.
+
+## Prior art
+
+Checked in November 2026. Mathlib (2026-11-19) has neither the sawtooth function nor Dedekind
+sums. The Isabelle AFP entry *Dedekind_Sums* (Apostol, *Modular Functions and Dirichlet Series*,
+chapter 3) has them, and so does the Lean project
+[TauCeti](https://github.com/TauCetiProject/TauCeti) (`TauCeti/NumberTheory/DedekindSum.lean`:
+periodicity, oddness, `s(h', k) = s(h, k)` for `h h' ≡ 1 (mod k)`, `s(1, k)` and the
+reciprocity law, used there for the multiplier of the Dedekind eta function).
 
 ## 1. The sawtooth function
 

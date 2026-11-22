@@ -1,6 +1,6 @@
 module
 
-public import MathInfra.New.LucasSeq
+public import MathInfra.FormalizedElsewhere.LucasSeq
 
 /-!
 # The rank of apparition of a Lucas sequence
@@ -14,14 +14,14 @@ agda-unimath).
 
 Write `D = P ^ 2 - 4 * Q` for the discriminant.
 
-When `Q` is a unit the rank behaves like the order of an element of a group: `U n = 0` exactly
-when the rank divides `n`, and modulo an odd prime `p` the rank divides `p - (D / p)`. This turns
-the law of apparition of `MathInfra.New.LucasSeq` into the **Lucas `N + 1` primality test**
-(Lehmer 1930, after Lucas 1878), the `N + 1` counterpart of Mathlib's `lucas_primality`: if
-`N > 1`, `Q` is prime to `N`, `N ∣ U (N + 1)`, and `U ((N + 1) / q)` is prime to `N` for every
-prime `q ∣ N + 1`, then `N` is prime. When `Q` is a unit, every solution over a finite ring is
-purely periodic, and the least period of `U` is the rank `r` times the multiplicative order of
-`U (r + 1)`; for Fibonacci numbers modulo `m` this is the Pisano period.
+When `Q` is a unit the rank behaves like the order of an element of a group: `U n = 0` exactly when
+the rank divides `n`, and modulo an odd prime `p` the rank divides `p - (D / p)`. This turns the law
+of apparition of `MathInfra.FormalizedElsewhere.LucasSeq` into the **Lucas `N + 1` primality test**
+(Lehmer 1930, after Lucas 1878), the `N + 1` counterpart of Mathlib's `lucas_primality`: if `N > 1`,
+`Q` is prime to `N`, `N ∣ U (N + 1)`, and `U ((N + 1) / q)` is prime to `N` for every prime
+`q ∣ N + 1`, then `N` is prime. When `Q` is a unit, every solution over a finite ring is purely
+periodic, and the least period of `U` is the rank `r` times the multiplicative order of `U (r + 1)`;
+for Fibonacci numbers modulo `m` this is the Pisano period.
 
 ## Main definitions
 

@@ -1,11 +1,11 @@
-import MathInfra.New.LucasSeq
+import MathInfra.FormalizedElsewhere.LucasSeq
 
 /-!
-# Checks for `MathInfra.New.LucasSeq`
+# Checks for `MathInfra.FormalizedElsewhere.LucasSeq`
 
 Known values, and the general theorems specialised to Fibonacci numbers, Mersenne numbers,
 `q`-numbers and the Lucas–Lehmer sequence. The axiom audit is in
-`MathInfraTest/New/LucasSeqAxioms.lean`. Both files are part of `lake build`.
+`MathInfraTest/FormalizedElsewhere/LucasSeqAxioms.lean`. Both files are part of `lake build`.
 -/
 
 /-! ### Known values -/

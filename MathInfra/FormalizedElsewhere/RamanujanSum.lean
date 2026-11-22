@@ -16,8 +16,11 @@ roots themselves and `c_q(0) = φ(q)` counts them.
 
 Ramanujan sums are the basic exponential sums of elementary number theory: they appear in
 Ramanujan expansions of arithmetic functions, in the singular series of the circle method, and
-as the degenerate case of Kloosterman and Gauss sums. Mathlib has the Möbius function and
-primitive roots of unity but not these sums.
+as the degenerate case of Kloosterman and Gauss sums. Mathlib (2026-11-19) has the Möbius
+function and primitive roots of unity but not these sums. They are in the Isabelle AFP entry
+*Gauss_Sums* and in the Lean project TauCeti
+(`TauCeti/NumberTheory/CircleMethod/RamanujanSum.lean`, checked November 2026: the divisor sum,
+multiplicativity, the values at prime powers and `|c_q(n)| ≤ gcd(q, n)`).
 
 ## Main definitions
 

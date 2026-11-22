@@ -1,8 +1,8 @@
 # Ramanujan sums: the proofs in ordinary language
 
-This is the human-readable companion to `MathInfra/FormalizedElsewhere/RamanujanSum.lean`. Each numbered
-statement names the Lean theorem that checks it, and the proofs follow the same route as the
-Lean proofs.
+This is the human-readable companion to `MathInfra/FormalizedElsewhere/RamanujanSum.lean`. Each
+numbered statement names the Lean theorem that checks it, and the proofs follow the same route
+as the Lean proofs.
 
 Throughout, `q`, `r`, `d`, `e` are natural numbers, `n` and `m` are integers, `μ` is the
 Möbius function and `φ` is Euler's totient. Write
@@ -11,6 +11,15 @@ Möbius function and `φ` is Euler's totient. Write
 
 Lean's convention is that `0` has no divisors and that the sets of `0`-th roots of unity and of
 primitive `0`-th roots of unity are empty, so sums over these are `0`.
+
+## Prior art
+
+Checked in November 2026. Mathlib (2026-11-19) has the Möbius function and primitive roots of
+unity but not Ramanujan sums. The Isabelle AFP entry *Gauss_Sums* (theory `Ramanujan_Sums`,
+Apostol chapter 8) has them, and so does the Lean project
+[TauCeti](https://github.com/TauCetiProject/TauCeti)
+(`TauCeti/NumberTheory/CircleMethod/RamanujanSum.lean`: the divisor sum, multiplicativity, the
+values at prime powers and `|c_q(n)| ≤ gcd(q, n)`).
 
 ## 1. Definition
 

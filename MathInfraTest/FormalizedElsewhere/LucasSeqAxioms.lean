@@ -1,7 +1,7 @@
-import MathInfra.New.LucasSeq
+import MathInfra.FormalizedElsewhere.LucasSeq
 
 /-!
-# Axiom audit for `MathInfra.New.LucasSeq`
+# Axiom audit for `MathInfra.FormalizedElsewhere.LucasSeq`
 
 Every public theorem, with the axioms it depends on. `#guard_msgs` turns each line into a
 check, so the build fails if any theorem starts depending on anything else (for example

@@ -2,7 +2,7 @@ module
 
 public import Mathlib
 public import MathInfra.New.GaussSeq
-public import MathInfra.New.LucasSeq
+public import MathInfra.FormalizedElsewhere.LucasSeq
 
 /-!
 # Zeta series of integer sequences

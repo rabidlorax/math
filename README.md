@@ -5,7 +5,8 @@ Machine-checked mathematical infrastructure in Lean 4 on top of Mathlib.
 ## Layout
 
 Topics are split by whether they had already been formalized elsewhere when checked
-(November 2026, against Mathlib of 2026-11-19, open Mathlib PRs and the Isabelle AFP):
+(November 2026, against Mathlib of 2026-11-19, open Mathlib PRs, other Lean projects and the
+Isabelle AFP):
 
 - `New/`: no existing formalization found in any proof assistant.
 - `FormalizedElsewhere/`: already formalized in another library or in an open Mathlib PR.
@@ -24,12 +25,6 @@ Each topic `X` has four files:
 
 ### New
 
-- `LucasSeq`: Lucas sequences `U_n(P, Q)`, `V_n(P, Q)` over any commutative ring: addition,
-  doubling and composition formulas, Binet formulas, strong divisibility, and the behaviour
-  modulo a prime (law of apparition). Mathlib has only special cases (Fibonacci, Chebyshev,
-  Dickson, the Pell solutions of `PellMatiyasevic`, the Lucas–Lehmer sequence); this file
-  proves the first three are special cases. Closest prior art: the one-parameter `U`-only
-  theory `Lucas_Sequences` in the AFP entry *Diophantine_Universal_Pairs*.
 - `GaussSeq`: the Gauss congruences `n ∣ Σ_{d ∣ n} μ(d)·f(n/d)` (also called Dold
   congruences; such sequences are also called realizable sequences): two characterisations
   (divisor sums of `d·h(d)`, and congruences modulo prime powers), the subring of sequences
@@ -55,6 +50,18 @@ Each topic `X` has four files:
 
 ### FormalizedElsewhere
 
+- `LucasSeq`: Lucas sequences `U_n(P, Q)`, `V_n(P, Q)` over any commutative ring: addition,
+  doubling and composition formulas, Binet formulas, strong divisibility, and the behaviour
+  modulo a prime (law of apparition). Mathlib (2026-11-19) has only special cases (Fibonacci,
+  Chebyshev, Dickson, the Pell solutions of `PellMatiyasevic`, the Lucas–Lehmer sequence); this
+  file proves the first three are special cases. Formalized in the Lean project
+  [TauCeti](https://github.com/TauCetiProject/TauCeti) (`TauCeti/NumberTheory/LucasSequence/`,
+  checked 2026-11-21: the same names `lucasU`, `lucasV`, the addition, doubling and composition
+  formulas, Cassini, Binet, strong divisibility and the Fibonacci, Mersenne, Lucas–Lehmer, Dickson
+  and Chebyshev cases). Not there: the `q`-number case and everything modulo a prime (`V_p ≡ P`,
+  `U_p ≡ (D/p)`, the law of apparition, whose Fibonacci case is in the open Mathlib PR
+  [#44020](https://github.com/leanprover-community/mathlib4/pull/44020)). The AFP entry
+  *Diophantine_Universal_Pairs* has the one-parameter `U`-only theory `Lucas_Sequences`.
 - `QAnalog`: q-numbers, q-factorials, Gaussian binomial coefficients, the q-binomial theorem
   and universality. Mathlib lists q-factorials and q-binomials as a TODO. Formalized in
   open Mathlib PR [#43780](https://github.com/leanprover-community/mathlib4/pull/43780)
@@ -63,12 +70,16 @@ Each topic `X` has four files:
 - `RamanujanSum`: Ramanujan sums `c_q(n)`: the divisor-sum characterisation, values,
   periodicity, multiplicativity in `q`, Hölder's formula, and `c_q(n)` as a sum of powers of
   the primitive `q`-th roots of unity in any integral domain that has one. Formalized in the
-  AFP entry *Gauss_Sums* (theory `Ramanujan_Sums`, Apostol chapter 8).
+  AFP entry *Gauss_Sums* (theory `Ramanujan_Sums`, Apostol chapter 8) and in the Lean project
+  [TauCeti](https://github.com/TauCetiProject/TauCeti)
+  (`TauCeti/NumberTheory/CircleMethod/RamanujanSum.lean`, also `|c_q(n)| ≤ gcd(q, n)`).
 - `DedekindSum`: the sawtooth function `((x))` and its distribution relation; Dedekind sums
   `s(h, k)`: symmetries, homogeneity, an integer formula, the bound `|s(h, k)| ≤ s(1, k)`, the
   reciprocity law, and the integrality of `6k·s(h, k)` with the congruence
   `12hk·s(h, k) ≡ h² + 1 (mod k)`. Formalized in the AFP entry *Dedekind_Sums* (Apostol,
-  *Modular Functions and Dirichlet Series*, chapter 3).
+  *Modular Functions and Dirichlet Series*, chapter 3) and in the Lean project
+  [TauCeti](https://github.com/TauCetiProject/TauCeti) (`TauCeti/NumberTheory/DedekindSum.lean`,
+  used there for the multiplier of the Dedekind eta function).
 - `Wolstenholme`: Wolstenholme's theorem `C(2p − 1, p − 1) ≡ 1 (mod p³)` for primes `p ≥ 5`,
   Babbage's `C(2p − 1, p − 1) ≡ 1 (mod p²)` for odd `p`, and Ljunggren's (Jacobsthal's)
   congruence `C(ap, bp) ≡ C(a, b)` modulo `p²` for every prime and modulo `p³` for `p ≥ 5`, all
@@ -146,12 +157,13 @@ None of the following is done here; these are the natural next steps.
 
 From Lucas sequences:
 
-- Primitive divisors (Carmichael's theorem; Zsigmondy for the case `(a + b, ab)`).
+- Primitive divisors (Carmichael's theorem; Zsigmondy for the case `(a + b, ab)`, which TauCeti
+  has for coprime natural `a > b > 0`).
 - Solutions of Pell-type equations `x² − D y² = 4 Qⁿ` via `lucasV_sq`.
 
 From Ramanujan sums:
 
-- The bound `|c_q(n)| ≤ gcd(q, n)`, from Hölder's formula.
+- The bound `|c_q(n)| ≤ gcd(q, n)`, from Hölder's formula (TauCeti has the bound).
 - Orthogonality: for `r, s ∣ q`, `Σ_{n mod q} c_r(n)·c_s(n)` is `q·φ(r)` if `r = s` and `0`
   otherwise.
 - Ramanujan expansions, such as `σ(n)/n = (π²/6)·Σ_{q ≥ 1} c_q(n)/q²` for `n ≥ 1`.
@@ -161,7 +173,8 @@ From Ramanujan sums:
 From Dedekind sums:
 
 - The transformation law of the Dedekind eta function under `SL₂(ℤ)`, whose root of unity is
-  expressed through `s(d, c)`, and the Rademacher function `Φ`.
+  expressed through `s(d, c)`, and the Rademacher function `Φ` (TauCeti has the transformation
+  law).
 - The cotangent formula `s(h, k) = (1/(4k))·Σ_{0<r<k} cot(πr/k)·cot(πhr/k)` for coprime
   `h, k`, from a finite Fourier expansion of `((r/k))`.
 - Rademacher's three-term reciprocity, and Dedekind–Rademacher sums with shifts.

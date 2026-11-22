@@ -17,7 +17,10 @@ lens spaces. The central fact is the **reciprocity law**: for coprime `h, k > 0`
 `s(h, k) + s(k, h) = (h² + k² + 1) / (12 h k) - 1/4`.
 
 Together with periodicity in `h` it evaluates `s(h, k)` along the Euclidean algorithm. Mathlib
-has Hermite's identity for the floor function but neither the sawtooth function nor these sums.
+(2026-11-19) has Hermite's identity for the floor function but neither the sawtooth function nor
+these sums. They are in the Isabelle AFP entry *Dedekind_Sums* and in the Lean project TauCeti
+(`TauCeti/NumberTheory/DedekindSum.lean`: periodicity, oddness, `s(h', k) = s(h, k)` for
+`h h' ≡ 1 (mod k)`, `s(1, k)` and the reciprocity law, checked November 2026).
 
 ## Main definitions
 
