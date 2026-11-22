@@ -54,6 +54,21 @@ Each topic `X` has four files:
   reciprocity law, and the integrality of `6k·s(h, k)` with the congruence
   `12hk·s(h, k) ≡ h² + 1 (mod k)`. Formalized in the AFP entry *Dedekind_Sums* (Apostol,
   *Modular Functions and Dirichlet Series*, chapter 3).
+- `ZetaSeries`: zeta series `exp(Σ f(n)·Xⁿ/n)` of sequences, defined without division by
+  `P(0) = 1` and `P' = P·Σ f(n+1)·Xⁿ`, and Witt products `Π_d (1 − X^d)^(−h(d))`. Dold's
+  criterion: `f : ℕ → ℤ` satisfies the Gauss congruences of `GaussSeq` if and only if its zeta
+  series has integer coefficients. Jacobi's formula: `det(1 − X·A)` is a zeta series of
+  `n ↦ −tr(Aⁿ)`. Hence `tr(Aⁿ)`, for every square integer matrix `A`, and Lucas `V_n(P, Q)`,
+  for integers `P`, `Q`, satisfy the Gauss congruences; in particular
+  `tr(A^(p^(k+1)·m)) ≡ tr(A^(p^k·m)) (mod p^(k+1))`. Also: the Artin–Mazur zeta function of a
+  self-map of a finite set has integer coefficients, and the cyclotomic identity
+  `1/(1 − aX) = Π_d (1 − X^d)^(−M(a, d))` holds degree by degree. Mathlib (2026-11-19) has
+  `tr(Aᵖ) = tr(A)ᵖ` over finite fields and the degree-1 coefficient of `det(1 − X·A)`; Jacobi's
+  formula was proposed in the closed, unmerged Mathlib PR
+  [#44901](https://github.com/leanprover-community/mathlib4/pull/44901). The direction "Gauss
+  congruences ⇒ integral zeta series" is `integral_exp_of_dold` in the Lean project
+  `the-omega-institute/trureturing`. The converse, the Witt products and the trace and Lucas
+  results were not found elsewhere.
 
 ## Running
 
@@ -108,7 +123,14 @@ From Gauss congruences:
 - Gauss's count `M(q, n)` of the monic irreducible polynomials of degree `n` over `𝔽_q`, from
   the fixed points of the Frobenius map on `𝔽_(qⁿ)`.
 - Lyndon words, counted by `M(a, n)`, and the Chen–Fox–Lyndon factorisation.
-- Traces `tr(Aⁿ)` of the powers of an integer matrix, hence Lucas `V_n(P, Q)`, satisfy the
-  Gauss congruences. In general, `f` satisfies them if and only if `exp(Σ f(n)·tⁿ/n)` has
-  integer coefficients (for fixed-point counts, the Artin–Mazur zeta function).
 - The big Witt vectors and the necklace ring, whose ghost components are these sequences.
+
+From zeta series:
+
+- The infinite Witt product: every `P ∈ 1 + Xℤ⟦X⟧` is `Π_{d ≥ 1} (1 − X^d)^(−h(d))` for a unique
+  `h`, which identifies `1 + Xℤ⟦X⟧` with the big Witt vectors `W(ℤ)`.
+- Subshifts of finite type: `tr(Aⁿ)` counts the closed walks of length `n` in a graph, so the
+  Bowen–Lanford formula `ζ(t) = 1/det(1 − tA)` follows from Jacobi's formula.
+- The Gauss congruences for the traces `Tr(αⁿ)` of an algebraic integer `α`, using the integer
+  matrix of multiplication by `α`.
+- Which linear recurrence sequences satisfy the Gauss congruences (Minton's theorem).

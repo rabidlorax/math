@@ -5,3 +5,4 @@ public import MathInfra.FormalizedElsewhere.RamanujanSum
 public import MathInfra.FormalizedElsewhere.DedekindSum
 public import MathInfra.New.LucasSeq
 public import MathInfra.New.GaussSeq
+public import MathInfra.FormalizedElsewhere.ZetaSeries
