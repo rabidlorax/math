@@ -4,6 +4,8 @@ import MathInfraTest.FormalizedElsewhere.RamanujanSum
 import MathInfraTest.FormalizedElsewhere.RamanujanSumAxioms
 import MathInfraTest.FormalizedElsewhere.DedekindSum
 import MathInfraTest.FormalizedElsewhere.DedekindSumAxioms
+import MathInfraTest.FormalizedElsewhere.Wolstenholme
+import MathInfraTest.FormalizedElsewhere.WolstenholmeAxioms
 import MathInfraTest.FormalizedElsewhere.IrreducibleCount
 import MathInfraTest.FormalizedElsewhere.IrreducibleCountAxioms
 import MathInfraTest.New.LucasSeq

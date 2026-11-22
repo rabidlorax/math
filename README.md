@@ -54,6 +54,21 @@ Each topic `X` has four files:
   reciprocity law, and the integrality of `6k·s(h, k)` with the congruence
   `12hk·s(h, k) ≡ h² + 1 (mod k)`. Formalized in the AFP entry *Dedekind_Sums* (Apostol,
   *Modular Functions and Dirichlet Series*, chapter 3).
+- `Wolstenholme`: Wolstenholme's theorem `C(2p − 1, p − 1) ≡ 1 (mod p³)` for primes `p ≥ 5`,
+  Babbage's `C(2p − 1, p − 1) ≡ 1 (mod p²)` for odd `p`, and Ljunggren's (Jacobsthal's)
+  congruence `C(ap, bp) ≡ C(a, b)` modulo `p²` for every prime and modulo `p³` for `p ≥ 5`, all
+  from `(1 + X)^p = 1 + X^p + p·G`, and the harmonic form `p² ∣ num(H_(p−1))` for `p ≥ 5`. Also
+  `C(p, k)/p ≡ (−1)^(k−1)/k`, power sums of inverses modulo `p`, and Fermat quotients `q_p(a)`:
+  `q_p(ab) ≡ q_p(a) + q_p(b)`, `q_p(a + pk) ≡ q_p(a) − k/a`, the Wieferich condition, and
+  Eisenstein's `2q_p(2) ≡ Σ_{0<k<p} (−1)^(k−1)/k ≡ −H_((p−1)/2) (mod p)` for odd `p`. Not in
+  Mathlib (2026-11-19); the closed, unmerged Mathlib PR
+  [#29675](https://github.com/leanprover-community/mathlib4/pull/29675) had the `p³` binomial
+  congruence alone. The Lean library
+  [atlas-lean](https://github.com/facebookresearch/atlas-lean) has the harmonic form in
+  `ZMod (p ^ 2)`, a `fermatQuotient` definition and, as a private lemma, the `p³` form of
+  Ljunggren's congruence; an AlphaProof proof of the binomial form is linked from
+  formal-conjectures. Babbage's theorem, the `p²` congruence for all primes, the formulas for
+  `q_p(ab)` and `q_p(a + pk)`, and Eisenstein's congruence were not found elsewhere.
 - `ZetaSeries`: zeta series `exp(Σ f(n)·Xⁿ/n)` of sequences, defined without division by
   `P(0) = 1` and `P' = P·Σ f(n+1)·Xⁿ`, and Witt products `Π_d (1 − X^d)^(−h(d))`. Dold's
   criterion: `f : ℕ → ℤ` satisfies the Gauss congruences of `GaussSeq` if and only if its zeta
@@ -155,3 +170,12 @@ From counting irreducible polynomials:
   the irreducible factors of cyclotomic polynomials over `𝔽_q`.
 - The count `q^n − q^(n−1)` of monic squarefree polynomials of degree `n ≥ 2`, and the factorisation
   statistics behind the analysis of Berlekamp's and Rabin's algorithms.
+
+From Wolstenholme's theorem:
+
+- Glaisher's `H_(p−1) ≡ −p²·B_(p−3)/3 (mod p³)`, which ties the Wolstenholme primes
+  (`C(2p − 1, p − 1) ≡ 1 (mod p⁴)`) to Bernoulli numbers, and the Kummer congruences.
+- Jacobsthal's sharpening of Ljunggren's congruence, whose modulus grows with
+  `v_p(ab(a − b))`, and supercongruences for Apéry numbers.
+- Lerch's formula for `q_p(a)` and the Wieferich criterion for the first case of Fermat's
+  last theorem.
