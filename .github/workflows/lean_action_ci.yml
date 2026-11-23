@@ -15,3 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: leanprover/lean-action@v1
+        with:
+          # Fail on any warning (a `sorry` is only a warning in Lean), so that a green run
+          # means what README.md says a warning-free build means.
+          build-args: "--wfail"
