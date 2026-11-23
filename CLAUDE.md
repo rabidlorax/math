@@ -71,8 +71,8 @@ renaming declarations is safe.
   `MathApplied/EconomicsAndSocialScience/StableMatchingBound/`). Keep the four-file
   convention: the Lean file, `<Topic>-proofs.md` beside it, and
   `MathAppliedTest/<Domain>/<Project>/<Topic>.lean` and `<Topic>Axioms.lean`. Add the imports
-  to `MathApplied.lean` and `MathAppliedTest.lean`. Put the declarations in a namespace named
-  after the project.
+  to `MathApplied.lean` and `MathAppliedTest.lean`. Declarations are in the root namespace,
+  as in `MathInfra`, so a name must not clash with one in another project or in `MathInfra`.
 - `MathApplied` may import `MathInfra`. `MathInfra` must never import `MathApplied`.
 - If a result turns out to be general, put it in `MathInfra`, not `MathApplied`, and import
   it from there.

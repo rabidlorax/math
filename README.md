@@ -187,9 +187,6 @@ Differences from `MathInfra`:
 
 - There is no `New/` / `FormalizedElsewhere/` split. The prior-art check is still done, and
   its result is recorded in the "Prior art" section of `X-proofs.md`.
-- Declarations go in a namespace named after the project (`namespace StableMatchingBound`),
-  so that two projects cannot clash over a name. `MathInfra` declarations are in the root
-  namespace.
 - A result that turns out to be general (not specific to the project's model or data) belongs
   in `MathInfra`, under the normal rules, and the project's file imports it from there.
 
@@ -254,9 +251,8 @@ contains no Lean code. Every proof one of its projects depends on is formalized 
 A vibe-research project cites a theorem of this repo by three things:
 
 - **The Lean declaration name**, exactly as it appears in the `Axioms` test file, for example
-  `lucasU_eq_zero_iff_lucasRank_dvd`. The name is not prefixed with the library or the file
-  path: `MathInfra` declarations are in the root namespace, `MathApplied` declarations in
-  their project's namespace. File paths are not cited, because topics move between `New/`
+  `lucasU_eq_zero_iff_lucasRank_dvd`. Declarations in both libraries are in the root namespace, so
+  the name is not prefixed with the library or the file path. File paths are not cited, because topics move between `New/`
   and `FormalizedElsewhere/`.
 - **The commit hash** of this repo at which the theorem was checked: a commit on `main` at
   which `lake build` passes with no warnings.
