@@ -1,0 +1,32 @@
+name: API docs
+
+# TRIAL (2026-11-23): measures how long the API docs take to build, first with an empty
+# cache and then with the Mathlib docs cached. While the trial lasts it runs on this branch
+# and ignores the failure of the Pages deployment, so that the docs cache is still saved.
+# Before merging: restrict `push` to `main` and remove `continue-on-error`.
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'claude/mathapplied-vibe-research-u8x9yy'
+  workflow_dispatch:
+
+permissions:
+  contents: read # Read access to repository contents
+  pages: write # Write access to GitHub Pages
+  id-token: write # Write access to ID tokens
+
+concurrency:
+  group: docs-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+      - uses: leanprover/lean-action@v1
+      - uses: leanprover-community/docgen-action@v1
+        continue-on-error: true
