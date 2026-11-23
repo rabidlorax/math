@@ -4,7 +4,20 @@ Machine-checked mathematical infrastructure in Lean 4 on top of Mathlib.
 
 ## Layout
 
-Topics are split by whether they had already been formalized elsewhere when checked
+Four Lean libraries, all built by `lake build`:
+
+- `MathInfra`: general mathematical infrastructure. Topics are listed under [New](#new) and
+  [FormalizedElsewhere](#formalizedelsewhere); conjectures go in `MathInfra/Conjectures/`
+  (see [Conjectures](#conjectures)).
+- `MathInfraTest`: its tests and axiom audits.
+- `MathApplied`: proofs that belong to one project of the
+  [vibe-research](https://github.com/rabidlorax/vibe-research) repository (see
+  [MathApplied](#mathapplied)). No topics yet (2026-11-23).
+- `MathAppliedTest`: its tests and axiom audits.
+
+`MathApplied` may import `MathInfra`. `MathInfra` never imports `MathApplied`.
+
+Within `MathInfra`, topics are split by whether they had already been formalized elsewhere when checked
 (November 2026, against Mathlib of 2026-11-19, open Mathlib PRs, other Lean projects and the
 Isabelle AFP):
 
@@ -12,7 +25,7 @@ Isabelle AFP):
 - `FormalizedElsewhere/`: already formalized in another library or in an open Mathlib PR.
   None of these are in Mathlib itself yet.
 
-Each topic `X` has four files:
+Each `MathInfra` topic `X` has four files:
 
 - `MathInfra/<folder>/X.lean`: the definitions and theorems.
 - `MathInfra/<folder>/X-proofs.md`: the same results and proofs in ordinary language, each
@@ -152,6 +165,118 @@ Each topic `X` has four files:
   and of twisted multiplicativity, the Ramanujan-sum case, the moments and Kloosterman's bound were
   not found elsewhere.
 
+### MathApplied
+
+A proof that serves one vibe-research project goes in
+`MathApplied/<Domain>/<Project>/<Topic>.lean`. `<Domain>` and `<Project>` are the CamelCase
+forms of the vibe-research domain and project slug: the project
+`domains/economics-and-social-science/projects/stable-matching-bound` has the folder
+`MathApplied/EconomicsAndSocialScience/StableMatchingBound/`.
+
+Each topic `X` has the same four files as a `MathInfra` topic:
+
+- `MathApplied/<Domain>/<Project>/X.lean`
+- `MathApplied/<Domain>/<Project>/X-proofs.md`
+- `MathAppliedTest/<Domain>/<Project>/X.lean`
+- `MathAppliedTest/<Domain>/<Project>/XAxioms.lean`
+
+`MathApplied.lean` and `MathAppliedTest.lean` import every topic, as `MathInfra.lean` and
+`MathInfraTest.lean` do.
+
+Differences from `MathInfra`:
+
+- There is no `New/` / `FormalizedElsewhere/` split. The prior-art check is still done, and
+  its result is recorded in the "Prior art" section of `X-proofs.md`.
+- Declarations go in a namespace named after the project (`namespace StableMatchingBound`),
+  so that two projects cannot clash over a name. `MathInfra` declarations are in the root
+  namespace.
+- A result that turns out to be general (not specific to the project's model or data) belongs
+  in `MathInfra`, under the normal rules, and the project's file imports it from there.
+
+A domain or project folder is created when its first topic is added, not before.
+
+### Conjectures
+
+A conjecture is stated without proof, as a definition of a proposition:
+
+```lean
+/-- Docstring: the statement in words, its source, and its status with a date. -/
+def fooConjecture : Prop := ...
+```
+
+It is never stated as a `theorem` with `sorry`, and never as an `axiom`. Either would make a
+warning-free build, or the axiom audit, mean less than it says under [Running](#running).
+
+- A general conjecture goes in `MathInfra/Conjectures/<Topic>.lean`.
+- A conjecture that belongs to one vibe-research project goes in that project's folder under
+  `MathApplied/`.
+- A result proved assuming a conjecture takes it as an explicit hypothesis
+  (`theorem bar (h : fooConjecture) : ...`). The axiom audit does not show that dependence;
+  the statement does. Anyone citing such a theorem must say that it is conditional.
+- If the conjecture is later proved, the `def` is replaced by the theorem and the file moves
+  according to the normal rules (`New/` or `FormalizedElsewhere/`, or stays in its project
+  folder).
+
+A conjecture file has an `X-proofs.md` beside it giving the statement, its source, its
+status with a date, and prior art (including whether the statement is already in
+[formal-conjectures](https://github.com/google-deepmind/formal-conjectures)). It has a test
+file and an `Axioms` file only if it contains theorems, such as checked small cases or
+conditional results.
+
+No conjectures yet (2026-11-23).
+
+### Computations done outside Lean
+
+Some results rest on a large search or computation run in other code (Python, C, a SAT
+solver). For a topic `X` of that kind:
+
+- The search code and the certificate it outputs go in a folder `X-search/` next to `X.lean`.
+  `X.lean` checks the certificate. It does not redo the search.
+- `X-proofs.md` states exactly what Lean verified and what is trusted (for instance, that
+  Lean checks every entry of a list but the completeness of the list is trusted), and gives
+  the command that regenerates the certificate, with the versions of the tools used.
+- If the check uses `native_decide`, `XAxioms.lean` shows an extra axiom. With Lean
+  v4.37.0-rc1 it is one generated per use, named like `foo._native.native_decide.ax_1_1` for a
+  theorem `foo`; older Lean versions showed `Lean.ofReduceBool`. That is allowed, but
+  `X-proofs.md` must say that the result trusts the Lean compiler as well as the kernel.
+- If Lean checks no certificate at all, the result is not a theorem of this repo. It is
+  stated as a conjecture (above), and its docstring describes the computation.
+
+There is no tooling for this yet (2026-11-23); it will be built when a topic needs it.
+
+## Relationship to vibe-research
+
+[vibe-research](https://github.com/rabidlorax/vibe-research) holds AI-conducted research
+projects in many fields, laid out as `domains/<domain>/projects/<project-slug>/`. It
+contains no Lean code. Every proof one of its projects depends on is formalized here: in
+`MathApplied` if it is specific to the project, in `MathInfra` if it is general.
+
+A vibe-research project cites a theorem of this repo by three things:
+
+- **The Lean declaration name**, exactly as it appears in the `Axioms` test file, for example
+  `lucasU_eq_zero_iff_lucasRank_dvd`. The name is not prefixed with the library or the file
+  path: `MathInfra` declarations are in the root namespace, `MathApplied` declarations in
+  their project's namespace. File paths are not cited, because topics move between `New/`
+  and `FormalizedElsewhere/`.
+- **The commit hash** of this repo at which the theorem was checked: a commit on `main` at
+  which `lake build` passes with no warnings.
+- **The axioms** it depends on, copied from the topic's `Axioms` test file at that commit.
+  Anything beyond `propext`, `Classical.choice` and `Quot.sound` needs a justification in
+  the project; an axiom with `native_decide` in its name (or `Lean.ofReduceBool`) means the
+  proof trusts the Lean compiler.
+
+For example:
+
+> `lucasU_eq_zero_iff_lucasRank_dvd`, rabidlorax/math at `<commit hash>`, axioms: `propext`,
+> `Classical.choice`, `Quot.sound`.
+
+To check a citation, check out that commit, run `lake build`, and read the statement of the
+theorem to confirm it says what the project claims.
+
+Because of these pointers, a public declaration here is not renamed or deleted without
+first checking whether vibe-research cites it (the rule is in `CLAUDE.md`). A conjecture
+stated here (see [Conjectures](#conjectures)) is not a proof and cannot be cited as one.
+
 ## Running
 
 Lean is not on PATH. In PowerShell, from this folder:
@@ -161,7 +286,7 @@ $env:ELAN_HOME = 'E:\math\.elan'; $env:PATH = "E:\math\.elan\bin;$env:PATH"
 lake build
 ```
 
-`lake build` checks the library and all test files. A successful build with no warnings
+`lake build` checks all four libraries: `MathInfra`, `MathApplied` and their test files. A successful build with no warnings
 means every proof, every example and the axiom audit passed.
 
 ## Where this leads

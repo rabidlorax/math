@@ -1,7 +1,7 @@
 name = "MathInfra"
 version = "0.1.0"
 keywords = ["math"]
-defaultTargets = ["MathInfra", "MathInfraTest"]
+defaultTargets = ["MathInfra", "MathInfraTest", "MathApplied", "MathAppliedTest"]
 
 [leanOptions]
 pp.unicode.fun = true # pretty-prints `fun a ↦ b`
@@ -20,3 +20,9 @@ name = "MathInfra"
 
 [[lean_lib]]
 name = "MathInfraTest"
+
+[[lean_lib]]
+name = "MathApplied"
+
+[[lean_lib]]
+name = "MathAppliedTest"
