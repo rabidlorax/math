@@ -266,6 +266,13 @@ For example:
 > `lucasU_eq_zero_iff_lucasRank_dvd`, rabidlorax/math at `<commit hash>`, axioms: `propext`,
 > `Classical.choice`, `Quot.sound`.
 
+The citation may also link to the theorem's statement with a permalink at the same commit:
+`https://github.com/rabidlorax/math/blob/<commit hash>/<path>#L<line>`. A permalink stays
+valid when the topic later moves to another folder, because it is pinned to the commit. A
+link to a branch (`blob/main/...`) does not, and is not used. The link is a convenience; the
+name, commit and axioms are still what identify the theorem. This repo publishes no hosted
+API documentation (2026-11-23).
+
 To check a citation, check out that commit, run `lake build`, and read the statement of the
 theorem to confirm it says what the project claims.
 

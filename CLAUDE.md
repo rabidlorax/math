@@ -48,7 +48,9 @@ fields, laid out as `domains/<domain>/projects/<project-slug>/`. It contains no 
 every proof a project depends on is formalized here. A project there points to a theorem
 here by its **Lean declaration name**, the **commit hash** of this repo at which it was
 checked, and the **axioms** it depends on (from the topic's `Axioms` test file). It does not
-use file paths.
+use file paths, except inside a permalink pinned to that commit
+(`https://github.com/rabidlorax/math/blob/<commit hash>/<path>#L<line>`), which stays valid
+when files move.
 
 ### Renaming and deleting
 
